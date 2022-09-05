@@ -3,7 +3,11 @@ public class Validation {
     public static String[] forbiddenList = {"aD12345678", "Passwort123", "DasIstBestimmt S1cher"};
 
     public static boolean validatePassword(String password) {
-        return isLongerThan7(password) && containsNumber(password);
+        return !isForbidden(password)
+                && containsLowercase(password)
+                && containsUppercase(password)
+                && containsNumber(password)
+                && isLongerThan7(password);
     }
 
     public static boolean isLongerThan7(String password) {

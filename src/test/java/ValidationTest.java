@@ -26,41 +26,6 @@ public class ValidationTest {
         assertTrue(actual);
     }
 
-    @Test
-    void shouldValidateWhenPasswordIsLongerThan7AndContainsADigit(){
-        //GIVEN
-        String password = "NichtZuKurz8";
-        //WHEN
-        boolean actual = Validation.validatePassword(password);
-        //THEN
-        assertTrue(actual);
-    }
-
-    @Test
-    void shouldNotValidateWhenPasswordIsShorterThan7ButContainsADigit(){
-        //GIVEN
-        String password = "zuKurz8";
-        //WHEN
-        boolean actual = Validation.validatePassword(password);
-        //THEN
-        assertFalse(actual);
-    }
-    @Test
-    void shouldNotValidateWhenPasswordIsGreaterThan7ButContainsNoDigit(){
-        //GIVEN
-        String password = "zuKurzsfsfsdf";
-        //WHEN
-        boolean actual = Validation.validatePassword(password);
-        //THEN
-        assertFalse(actual);
-    }
-
-
-
-
-
-
-
 
     @Test
     void shouldReturnTrueWhenPasswordContainsNumber(){
@@ -147,6 +112,65 @@ public class ValidationTest {
         String password = "Hl<jksefhlesdhlsohfgolsd1";
         //WHEN
         boolean actual = Validation.isForbidden(password);
+        //THEN
+        assertFalse(actual);
+    }
+
+
+    @Test
+    void shouldValidateWhenPasswordIsLongerThan7AndContainsADigitAndContainsUpperCaseAndLowerCaseAndIsNotOnForbiddenList(){
+        //GIVEN
+        String password = "NichtZuKurz8";
+        //WHEN
+        boolean actual = Validation.validatePassword(password);
+        //THEN
+        assertTrue(actual);
+    }
+
+    @Test
+    void shouldNotValidateWhenPasswordIsLongerThan7AndContainsADigitAndContainsUpperCaseAndLowerCaseAndIsOnForbiddenList(){
+        //GIVEN
+        String password = "Passwort123";
+        //WHEN
+        boolean actual = Validation.validatePassword(password);
+        //THEN
+        assertFalse(actual);
+    }
+    @Test
+    void shouldNotValidateWhenPasswordIsLongerThan7AndContainsADigitAndContainsUpperCaseAndNoLowerCaseAndIsNotOnForbiddenList(){
+        //GIVEN
+        String password = "NICHTZUKURZ8";
+        //WHEN
+        boolean actual = Validation.validatePassword(password);
+        //THEN
+        assertFalse(actual);
+    }
+
+    @Test
+    void shouldNotValidateWhenPasswordIsLongerThan7AndContainsADigitAndContainsNoUpperCaseAndLowerCaseAndIsNotOnForbiddenList(){
+        //GIVEN
+        String password = "nichtzukurz8";
+        //WHEN
+        boolean actual = Validation.validatePassword(password);
+        //THEN
+        assertFalse(actual);
+    }
+    @Test
+    void shouldNotValidateWhenPasswordIsLongerThan7AndContainsNoDigitAndContainsUpperCaseAndLowerCaseAndIsNotOnForbiddenList(){
+        //GIVEN
+        String password = "nichtzuKurz";
+        //WHEN
+        boolean actual = Validation.validatePassword(password);
+        //THEN
+        assertFalse(actual);
+    }
+
+    @Test
+    void shouldNotValidateWhenPasswordIsShorterThan7AndContainsDigitAndContainsUpperCaseAndLowerCaseAndIsNotOnForbiddenList(){
+        //GIVEN
+        String password = "nI8";
+        //WHEN
+        boolean actual = Validation.validatePassword(password);
         //THEN
         assertFalse(actual);
     }
