@@ -103,6 +103,16 @@ public class ValidationTest {
     }
 
     @Test
+    void shouldReturnFalseWhenPasswordContainsOnlyNumbers(){
+        //GIVEN
+        String password = "6514547";
+        //WHEN
+        boolean actual = Validation.containsUppercase(password);
+        //THEN
+        assertFalse(actual);
+    }
+
+    @Test
     void shouldReturnTrueWhenPasswordContainsLowercaseLetter(){
         //GIVEN
         String password = "z";
@@ -118,6 +128,25 @@ public class ValidationTest {
         String password = "Z";
         //WHEN
         boolean actual = Validation.containsLowercase(password);
+        //THEN
+        assertFalse(actual);
+    }
+
+    @Test
+    void shouldReturnTrueWhenPasswordIsOnForbiddenList(){
+        //GIVEN
+        String password = "aD12345678";
+        //WHEN
+        boolean actual = Validation.isForbidden(password);
+        //THEN
+        assertTrue(actual);
+    }
+    @Test
+    void shouldReturnFalseWhenPasswordIsNotOnForbiddenList(){
+        //GIVEN
+        String password = "Hl<jksefhlesdhlsohfgolsd1";
+        //WHEN
+        boolean actual = Validation.isForbidden(password);
         //THEN
         assertFalse(actual);
     }

@@ -1,5 +1,6 @@
 public class Validation {
 
+    public static String[] forbiddenList = {"aD12345678", "Passwort123", "DasIstBestimmt S1cher"};
 
     public static boolean validatePassword(String password) {
         return isLongerThan7(password) && containsNumber(password);
@@ -26,5 +27,14 @@ public class Validation {
 
     public static boolean containsLowercase(String password) {
         return !password.equals(password.toUpperCase()); // totalSicher85 == TOTALSICHER85
+    }
+
+    public static boolean isForbidden(String password) {
+        for (String s : forbiddenList) {
+            if (s.equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
