@@ -82,6 +82,44 @@ public class ValidationTest {
         assertFalse(actual);
     }
 
-    
+    @Test
+    void shouldReturnFalseWhenPasswordDidntContainsUppercaseLetter(){
+        //GIVEN
+        String password = "z";
+        //WHEN
+        boolean actual = Validation.containsUppercase(password);
+        //THEN
+        assertFalse(actual);
+    }
+
+    @Test
+    void shouldReturnTrueWhenPasswordContainsUppercaseLetter(){
+        //GIVEN
+        String password = "Z";
+        //WHEN
+        boolean actual = Validation.containsUppercase(password);
+        //THEN
+        assertTrue(actual);
+    }
+
+    @Test
+    void shouldReturnTrueWhenPasswordContainsLowercaseLetter(){
+        //GIVEN
+        String password = "z";
+        //WHEN
+        boolean actual = Validation.containsLowercase(password);
+        //THEN
+        assertTrue(actual);
+    }
+
+    @Test
+    void shouldReturnFalseWhenPasswordContainsNoLowercaseLetter(){
+        //GIVEN
+        String password = "Z";
+        //WHEN
+        boolean actual = Validation.containsLowercase(password);
+        //THEN
+        assertFalse(actual);
+    }
 
 }

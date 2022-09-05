@@ -19,4 +19,12 @@ public class Validation {
         }
         return false;
     }
+
+    public static boolean containsUppercase(String password) {
+        return !password.equals(password.toLowerCase()); // totalSicher85 == totalsicher85
+    }
+
+    public static boolean containsLowercase(String password) {
+        return !password.equals(password.toUpperCase()); // totalSicher85 == TOTALSICHER85
+    }
 }
